@@ -37,10 +37,12 @@ function getInlineImg(message){
 function cidExtract(body){
   var cids = [];
   var inlineImages = body.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
-  inlineImages.forEach(function(img) {
-        x = img.match(/src="cid:([^"]*)"/);
-        cids.push(x[1]);
-  });
+  if (inlineImages) {
+    inlineImages.forEach(function(img) {
+          x = img.match(/src="cid:([^"]*)"/);
+          cids.push(x[1]);
+    });
+  }
   return cids;
 }
 
